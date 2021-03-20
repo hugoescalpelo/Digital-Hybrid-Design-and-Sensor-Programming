@@ -1,0 +1,1677 @@
+[
+    {
+        "id": "927b7c70.82334",
+        "type": "tab",
+        "label": "DigitalHybrid",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "35fa393d.c0a036",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "Is WiFi",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "{\"id\":1,\"isWiFi\":1}",
+        "payloadType": "str",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "6eb5dd6b.6c6ec4",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "TCP Server",
+        "info": "",
+        "x": 150,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "83baa7a3.f6eec8",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "No WiFi",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":1,\"isWiFi\":0}",
+        "payloadType": "str",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "1a62214b.bb5a3f",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "Sensor set",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":2,\"uv\":3,\"temp\":26,\"hum\":50,\"buttons\":35,\"motion\":1,\"batt\":76.5,\"lat\":19.404200,\"lon\":-99.179278}",
+        "payloadType": "str",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "a2aa0477.42f2d8",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "Actuators set",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":3,\"pelt\":15,\"vibration\":4}",
+        "payloadType": "str",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "374799b2.cfc9a6",
+        "type": "serial in",
+        "z": "927b7c70.82334",
+        "d": true,
+        "name": "Serial In",
+        "serial": "",
+        "x": 140,
+        "y": 540,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "598516a8.924e28",
+        "type": "ui_text",
+        "z": "927b7c70.82334",
+        "group": "54fba55d.cd2d1c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "wifi",
+        "label": "WiFi Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1650,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "551c580f.9c34a8",
+        "type": "ui_text",
+        "z": "927b7c70.82334",
+        "group": "54fba55d.cd2d1c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "3G",
+        "label": "3G status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1650,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "80fddfbc.7fd1a",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "3G status",
+        "func": "global.set (\"is3g\",msg.payload.is3g);\nmsg.payload = global.get(\"is3g\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1400,
+        "y": 640,
+        "wires": [
+            [
+                "551c580f.9c34a8"
+            ]
+        ]
+    },
+    {
+        "id": "39a83061.fe441",
+        "type": "json",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 1190,
+        "y": 640,
+        "wires": [
+            [
+                "80fddfbc.7fd1a"
+            ]
+        ]
+    },
+    {
+        "id": "be1cf19.11d461",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "WiFi Status",
+        "func": "global.set (\"isWiFi\",msg.payload.isWiFi);\nmsg.payload = global.get(\"isWiFi\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1410,
+        "y": 700,
+        "wires": [
+            [
+                "598516a8.924e28"
+            ]
+        ]
+    },
+    {
+        "id": "18929ac8.303e85",
+        "type": "json",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 1190,
+        "y": 700,
+        "wires": [
+            [
+                "be1cf19.11d461"
+            ]
+        ]
+    },
+    {
+        "id": "57ae7a20.a5be44",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 970,
+        "y": 140,
+        "wires": [
+            [
+                "e493e961.7c7bb8"
+            ]
+        ]
+    },
+    {
+        "id": "e493e961.7c7bb8",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Check Internet",
+        "func": "var status3g = global.get(\"is3g\");\nvar statusWiFi = global.get(\"isWiFi\");\nif (status3g|| statusWiFi) {\n    global.set (\"internetStatus\",1);\n} else {\n    global.set (\"internetStatus\",0);\n}\nmsg.payload = global.get (\"internetStatus\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1420,
+        "y": 140,
+        "wires": [
+            [
+                "7419a2b7.6f35ec"
+            ]
+        ]
+    },
+    {
+        "id": "7419a2b7.6f35ec",
+        "type": "ui_text",
+        "z": "927b7c70.82334",
+        "group": "54fba55d.cd2d1c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Internet Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1680,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4e742701.83db08",
+        "type": "ui_switch",
+        "z": "927b7c70.82334",
+        "name": "switch 3G",
+        "label": "3G",
+        "tooltip": "",
+        "group": "54fba55d.cd2d1c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "{\"id\":0,\"is3g\":1}",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "{\"id\":0,\"is3g\":0}",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 960,
+        "y": 640,
+        "wires": [
+            [
+                "39a83061.fe441"
+            ]
+        ]
+    },
+    {
+        "id": "5db07898.0cf488",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "Is 3G",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":0,\"is3g\":1}",
+        "payloadType": "str",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "ed253092.0a303",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "No 3G",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":0,\"is3g\":0}",
+        "payloadType": "str",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "c772c742.c2e868",
+        "type": "ui_switch",
+        "z": "927b7c70.82334",
+        "name": "Switch WiFi",
+        "label": "WiFi",
+        "tooltip": "",
+        "group": "54fba55d.cd2d1c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "{\"id\":0,\"isWiFi\":1}",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "{\"id\":0,\"isWiFi\":0}",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 970,
+        "y": 700,
+        "wires": [
+            [
+                "18929ac8.303e85"
+            ]
+        ]
+    },
+    {
+        "id": "3cb925a2.daca6a",
+        "type": "json",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 450,
+        "y": 640,
+        "wires": [
+            [
+                "6108ed17.623dc4",
+                "bdc7e9dd.e29388",
+                "442502d5.e31adc",
+                "7b3349e9.300118",
+                "1fcc72f5.1ce53d",
+                "11889ceb.dda273",
+                "53819c21.2dd264",
+                "dffb70c2.eabc1"
+            ]
+        ]
+    },
+    {
+        "id": "6108ed17.623dc4",
+        "type": "switch",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "payload.id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 670,
+        "y": 640,
+        "wires": [
+            [
+                "39a83061.fe441"
+            ],
+            [
+                "18929ac8.303e85"
+            ],
+            [
+                "cf7819f3.62db88"
+            ],
+            [
+                "847602f7.1aa3a"
+            ],
+            [
+                "92c782f5.fac1f"
+            ],
+            [
+                "7a326e34.54d2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7d99ef99.9d7b3",
+        "type": "tcp in",
+        "z": "927b7c70.82334",
+        "name": "",
+        "server": "server",
+        "host": "",
+        "port": "1885",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "",
+        "topic": "",
+        "base64": false,
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "3cb925a2.daca6a"
+            ]
+        ]
+    },
+    {
+        "id": "17b275fb.a3855a",
+        "type": "tcp out",
+        "z": "927b7c70.82334",
+        "host": "127.0.0.1",
+        "port": "1885",
+        "beserver": "client",
+        "base64": false,
+        "end": false,
+        "name": "",
+        "x": 490,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "6d2d218f.8adfa",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Constantly check internet status",
+        "info": "",
+        "x": 1030,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "abb661e5.1ac99",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "TCP Client",
+        "info": "",
+        "x": 460,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "90eb82d7.53f32",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Forced entries",
+        "info": "All entries forced for manual check & debug",
+        "x": 150,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "e9db82c8.1024",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Set Internet status",
+        "info": "",
+        "x": 990,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "eb138f37.60bc3",
+        "type": "switch",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1190,
+        "y": 860,
+        "wires": [
+            [
+                "ce80fbc8.a6c0c8"
+            ],
+            [
+                "d28b7484.9a0658"
+            ]
+        ]
+    },
+    {
+        "id": "cf7819f3.62db88",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Check Internet",
+        "func": "var internetCheck = global.get(\"internetStatus\")\nmsg.topic = internetCheck;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 840,
+        "wires": [
+            [
+                "eb138f37.60bc3"
+            ]
+        ]
+    },
+    {
+        "id": "d4209cdc.69713",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Query local&remote",
+        "func": "msg.topic=\"INSERT INTO sensors (uv,temp,hum,buttons,motion,batt,lat,lon) VALUES ('\"+msg.payload.uv+\"','\"+msg.payload.temp+\"','\"+msg.payload.hum+\"','\"+msg.payload.buttons+\"','\"+msg.payload.motion+\"','\"+msg.payload.batt+\"','\"+msg.payload.lat+\"','\"+msg.payload.lon+\"')\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2240,
+        "y": 980,
+        "wires": [
+            [
+                "a7410d6a.ed71d",
+                "3b7ad3e2.25792c"
+            ]
+        ]
+    },
+    {
+        "id": "ce80fbc8.a6c0c8",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Query Local",
+        "func": "msg.topic=\"INSERT INTO sensors (uv,temp,hum,buttons,motion,batt,lat,lon) VALUES ('\"+msg.payload.uv+\"','\"+msg.payload.temp+\"','\"+msg.payload.hum+\"','\"+msg.payload.buttons+\"','\"+msg.payload.motion+\"','\"+msg.payload.batt+\"','\"+msg.payload.lat+\"','\"+msg.payload.lon+\"')\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1410,
+        "y": 840,
+        "wires": [
+            [
+                "3b7ad3e2.25792c"
+            ]
+        ]
+    },
+    {
+        "id": "9be2ed8e.4dad1",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "No Internet Case",
+        "info": "",
+        "x": 1420,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "4a34c1fe.be5e3",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Is Internet Case",
+        "info": "",
+        "x": 1420,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "d28b7484.9a0658",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Is WiFi?",
+        "func": "var WiFiCheck = global.get(\"isWiFi\")\nmsg.topic = WiFiCheck;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1400,
+        "y": 940,
+        "wires": [
+            [
+                "beb17a1a.e3d128"
+            ]
+        ]
+    },
+    {
+        "id": "beb17a1a.e3d128",
+        "type": "switch",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1650,
+        "y": 940,
+        "wires": [
+            [
+                "8be69d23.6df2"
+            ],
+            [
+                "d4209cdc.69713"
+            ]
+        ]
+    },
+    {
+        "id": "3168002.8d4f3",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "No WiFi Case",
+        "info": "",
+        "x": 1890,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "52f28bbb.558cd4",
+        "type": "serial out",
+        "z": "927b7c70.82334",
+        "d": true,
+        "name": "",
+        "serial": "",
+        "x": 2190,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "85f57359.75a9f",
+        "type": "debug",
+        "z": "927b7c70.82334",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2210,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "8be69d23.6df2",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Return data for 3G query",
+        "func": "msg.payload = \"3gq,\"+msg.payload.uv+\",\"+msg.payload.temp+\",\"+msg.payload.hum+\",\"+msg.payload.buttons+\",\"+msg.payload.motion+\",\"+msg.payload.batt+\",\"+msg.payload.lat+\",\"+msg.payload.lon+\"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1930,
+        "y": 920,
+        "wires": [
+            [
+                "85f57359.75a9f",
+                "52f28bbb.558cd4"
+            ]
+        ]
+    },
+    {
+        "id": "abac5746.691af8",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "Visualizer set",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":4,\"filenamex\":\"0002.json\"}",
+        "payloadType": "str",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "274754bf.bb8d0c",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "Social set",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":5,\"id2\":0,\"text\":\"Ya puedo tuitear imagenes con nodeRed prros!\",\"path\":\"D:\\\\Test-img\\\\img-0002.jpg\"}",
+        "payloadType": "str",
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "d02899a2.f1eef8",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "fitbit set",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "2b9c923b.9c880e",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "realSense set",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 420,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "847602f7.1aa3a",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Parse actuator data",
+        "func": "msg.payload = \"acc,\"+msg.payload.temp+\",\"+msg.payload.vibration+\"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 1080,
+        "wires": [
+            [
+                "cc466538.e1b128",
+                "8bec8fa9.414b2"
+            ]
+        ]
+    },
+    {
+        "id": "8bec8fa9.414b2",
+        "type": "debug",
+        "z": "927b7c70.82334",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1210,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "cc466538.e1b128",
+        "type": "serial out",
+        "z": "927b7c70.82334",
+        "d": true,
+        "name": "",
+        "serial": "",
+        "x": 1190,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "68c6e92c.53f838",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Log Sensor data",
+        "info": "",
+        "x": 980,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "e7667603.808468",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Send actuator commands",
+        "info": "",
+        "x": 1010,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "92c782f5.fac1f",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Put filename and path",
+        "func": "msg.filename = 'Visualizer'+msg.payload.filenamex;\nmsg.localFilename = 'D:\\\\Test-visualizer\\\\visualizer_'+msg.payload.filenamex;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1000,
+        "y": 1200,
+        "wires": [
+            [
+                "bfcff5a7.82cb78"
+            ]
+        ]
+    },
+    {
+        "id": "ec691b70.f75c08",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Sync Visualizer File",
+        "info": "",
+        "x": 990,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "1eae4d0e.7b4233",
+        "type": "switch",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1190,
+        "y": 1340,
+        "wires": [
+            [
+                "e6fc5fce.62827"
+            ],
+            [
+                "cb8a0e5.833a6f"
+            ]
+        ]
+    },
+    {
+        "id": "7a326e34.54d2",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Check Internet",
+        "func": "var internetCheck = global.get(\"internetStatus\")\nmsg.topic = internetCheck;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 1320,
+        "wires": [
+            [
+                "1eae4d0e.7b4233"
+            ]
+        ]
+    },
+    {
+        "id": "5a8b73bd.44904c",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Query local&remote",
+        "func": "msg.topic=\"INSERT INTO social (id2, text, imgPath) VALUES ('\"+msg.payload.id2+\"','\"+msg.payload.text+\"','\"+msg.payload.imgPath+\"')\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2240,
+        "y": 1460,
+        "wires": [
+            [
+                "8a5fb449.b080d8",
+                "d4f0fd61.04e71"
+            ]
+        ]
+    },
+    {
+        "id": "e6fc5fce.62827",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Query Local",
+        "func": "msg.topic=\"INSERT INTO sensors (uv,temp,hum,buttons,motion,batt,lat,lon) VALUES ('\"+msg.payload.uv+\"','\"+msg.payload.temp+\"','\"+msg.payload.hum+\"','\"+msg.payload.buttons+\"','\"+msg.payload.motion+\"','\"+msg.payload.batt+\"','\"+msg.payload.lat+\"','\"+msg.payload.lon+\"')\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1410,
+        "y": 1320,
+        "wires": [
+            [
+                "d4f0fd61.04e71"
+            ]
+        ]
+    },
+    {
+        "id": "26919736.a738e8",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "No Internet Case",
+        "info": "",
+        "x": 1420,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "586ef130.ae44f",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Is Internet Case",
+        "info": "",
+        "x": 1420,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "cb8a0e5.833a6f",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Is WiFi?",
+        "func": "var WiFiCheck = global.get(\"isWiFi\")\nmsg.topic = WiFiCheck;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1400,
+        "y": 1420,
+        "wires": [
+            [
+                "2985e0fb.7db0a"
+            ]
+        ]
+    },
+    {
+        "id": "2985e0fb.7db0a",
+        "type": "switch",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1650,
+        "y": 1460,
+        "wires": [
+            [
+                "82d44cad.10b36"
+            ],
+            [
+                "5a8b73bd.44904c",
+                "b5211a12.719168"
+            ]
+        ]
+    },
+    {
+        "id": "549f6ee3.efd96",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "No WiFi Case",
+        "info": "",
+        "x": 1890,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "77b69a15.e09e84",
+        "type": "serial out",
+        "z": "927b7c70.82334",
+        "d": true,
+        "name": "",
+        "serial": "",
+        "x": 2190,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "82d44cad.10b36",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Return data for 3G query",
+        "func": "msg.payload = \"scl,\"+msg.payload.id2+\",\"+msg.payload.text+\",\"+msg.payload.imgPath;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1930,
+        "y": 1400,
+        "wires": [
+            [
+                "77b69a15.e09e84"
+            ]
+        ]
+    },
+    {
+        "id": "f4ceefaa.6ecac",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Social",
+        "info": "",
+        "x": 950,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "b5211a12.719168",
+        "type": "switch",
+        "z": "927b7c70.82334",
+        "name": "",
+        "property": "payload.id2",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1870,
+        "y": 1560,
+        "wires": [
+            [
+                "6b7c7721.9482b8"
+            ]
+        ]
+    },
+    {
+        "id": "6b7c7721.9482b8",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Split message",
+        "func": "global.set(\"tuit\",msg.payload.text);\nmsg = { payload: msg.payload.path };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2220,
+        "y": 1560,
+        "wires": [
+            [
+                "ede29ec8.16b04"
+            ]
+        ]
+    },
+    {
+        "id": "59075a8c.ed86f4",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "Merge message",
+        "func": "msg.media = msg.payload;\nmsg.payload = global.get(\"tuit\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2220,
+        "y": 1640,
+        "wires": [
+            [
+                "dfbf17d5.cebfe8"
+            ]
+        ]
+    },
+    {
+        "id": "c0ee0b12.7bdc68",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Merge text and image",
+        "info": "",
+        "x": 2240,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "6a13cefa.2f62b",
+        "type": "ui_gauge",
+        "z": "927b7c70.82334",
+        "name": "",
+        "group": "c7a3d16d.cba2",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humedad",
+        "label": "RH%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 960,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "910efb35.9da4b8",
+        "type": "ui_gauge",
+        "z": "927b7c70.82334",
+        "name": "Temperatura",
+        "group": "c7a3d16d.cba2",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 970,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "563a5075.23a89",
+        "type": "ui_gauge",
+        "z": "927b7c70.82334",
+        "name": "",
+        "group": "c7a3d16d.cba2",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Indice de Radiación",
+        "label": "UV",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "11",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 990,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "46b34bdb.bb9104",
+        "type": "ui_chart",
+        "z": "927b7c70.82334",
+        "name": "",
+        "group": "26b58313.43c56c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Motors",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "10",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 950,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "edbc0e23.a33f3",
+        "type": "ui_chart",
+        "z": "927b7c70.82334",
+        "name": "Peltier",
+        "group": "26b58313.43c56c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "°C",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "40",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 950,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ed7fc1e.cfb2d4",
+        "type": "ui_text",
+        "z": "927b7c70.82334",
+        "group": "e18a9f4e.e1433",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Botones",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 960,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "b142a52a.67f9c8",
+        "type": "ui_gauge",
+        "z": "927b7c70.82334",
+        "name": "",
+        "group": "e18a9f4e.e1433",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Bateria",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 960,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "bdc7e9dd.e29388",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "",
+        "func": "msg.payload = msg.payload.hum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 420,
+        "wires": [
+            [
+                "6a13cefa.2f62b"
+            ]
+        ]
+    },
+    {
+        "id": "442502d5.e31adc",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "",
+        "func": "msg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 460,
+        "wires": [
+            [
+                "910efb35.9da4b8"
+            ]
+        ]
+    },
+    {
+        "id": "7b3349e9.300118",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "",
+        "func": "msg.payload = msg.payload.uv;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 500,
+        "wires": [
+            [
+                "563a5075.23a89"
+            ]
+        ]
+    },
+    {
+        "id": "1fcc72f5.1ce53d",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "",
+        "func": "msg.payload = msg.payload.batt;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 260,
+        "wires": [
+            [
+                "b142a52a.67f9c8"
+            ]
+        ]
+    },
+    {
+        "id": "11889ceb.dda273",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "",
+        "func": "msg.payload = msg.payload.buttons;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 540,
+        "wires": [
+            [
+                "2ed7fc1e.cfb2d4"
+            ]
+        ]
+    },
+    {
+        "id": "8d622e01.4196f",
+        "type": "inject",
+        "z": "927b7c70.82334",
+        "name": "Battery stats",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":6,\"batt\":96}",
+        "payloadType": "str",
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "17b275fb.a3855a"
+            ]
+        ]
+    },
+    {
+        "id": "53819c21.2dd264",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "",
+        "func": "msg.payload = msg.payload.vibration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 320,
+        "wires": [
+            [
+                "46b34bdb.bb9104"
+            ]
+        ]
+    },
+    {
+        "id": "dffb70c2.eabc1",
+        "type": "function",
+        "z": "927b7c70.82334",
+        "name": "",
+        "func": "msg.payload = msg.payload.pelt;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 360,
+        "wires": [
+            [
+                "edbc0e23.a33f3"
+            ]
+        ]
+    },
+    {
+        "id": "7c4de158.151cd",
+        "type": "comment",
+        "z": "927b7c70.82334",
+        "name": "Indicators",
+        "info": "",
+        "x": 960,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "3b7ad3e2.25792c",
+        "type": "mysql",
+        "z": "927b7c70.82334",
+        "mydb": "90e79f01.87add",
+        "name": "LocalDB",
+        "x": 2520,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7410d6a.ed71d",
+        "type": "mysql",
+        "z": "927b7c70.82334",
+        "mydb": "db96678e.937598",
+        "name": "RemoteDB",
+        "x": 2530,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d4f0fd61.04e71",
+        "type": "mysql",
+        "z": "927b7c70.82334",
+        "mydb": "90e79f01.87add",
+        "name": "LocalDB",
+        "x": 2520,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a5fb449.b080d8",
+        "type": "mysql",
+        "z": "927b7c70.82334",
+        "mydb": "db96678e.937598",
+        "name": "RemoteDB",
+        "x": 2530,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dfbf17d5.cebfe8",
+        "type": "twitter out",
+        "z": "927b7c70.82334",
+        "twitter": "",
+        "name": "Tweet",
+        "x": 2510,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "ede29ec8.16b04",
+        "type": "file-buffer",
+        "z": "927b7c70.82334",
+        "name": "Convert img to buffer",
+        "mode": "asBuffer",
+        "x": 2240,
+        "y": 1600,
+        "wires": [
+            [
+                "59075a8c.ed86f4"
+            ]
+        ]
+    },
+    {
+        "id": "bfcff5a7.82cb78",
+        "type": "ftp in",
+        "z": "927b7c70.82334",
+        "ftp": "b7d31590.792fd8",
+        "operation": "put",
+        "filename": "",
+        "localFilename": "",
+        "name": "Put in FTP",
+        "x": 1210,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54fba55d.cd2d1c",
+        "type": "ui_group",
+        "name": "InternetStatus",
+        "tab": "43daeaed.c65cc4",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c7a3d16d.cba2",
+        "type": "ui_group",
+        "name": "Sensores",
+        "tab": "43daeaed.c65cc4",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "26b58313.43c56c",
+        "type": "ui_group",
+        "name": "Actuadores",
+        "tab": "43daeaed.c65cc4",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "e18a9f4e.e1433",
+        "type": "ui_group",
+        "name": "Estatus",
+        "tab": "43daeaed.c65cc4",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "90e79f01.87add",
+        "type": "MySQLdatabase",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "digitalhybrid",
+        "tz": ""
+    },
+    {
+        "id": "db96678e.937598",
+        "type": "MySQLdatabase",
+        "host": "207.174.215.153",
+        "port": "3306",
+        "db": "hugov7zv_DigitalHybrid",
+        "tz": ""
+    },
+    {
+        "id": "b7d31590.792fd8",
+        "type": "ftp",
+        "host": "ftp.hugovargas.com",
+        "port": "21",
+        "secureOptions": "",
+        "user": "hugov7hl",
+        "connTimeout": "",
+        "pasvTimeout": "",
+        "keepalive": ""
+    },
+    {
+        "id": "43daeaed.c65cc4",
+        "type": "ui_tab",
+        "name": "Digital Hybrid",
+        "icon": "dashboard",
+        "order": 18,
+        "disabled": false,
+        "hidden": false
+    }
+]

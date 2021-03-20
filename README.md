@@ -38,6 +38,13 @@ Below is the division of roles.
 - LibRealsense-utils
 - LibRealsense-dev
 - JetPack Installer 3.2.1
+- NodeJS 14 LTS
+- NodeRed 1.2.7
+- NPM
+- node-red-node-serialport Nodes
+- node-red-node-twitter Nodes
+- node-red-dashboard Nodes
+- node-red-contrib-fitbit Nodes
 
 **General System Description**
 
