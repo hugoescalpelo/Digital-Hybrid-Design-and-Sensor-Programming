@@ -51,3 +51,7 @@ Below is the division of roles.
 This diagram shows working stages at electronic level. This diagram does not includes IA systems.
 
 ![](https://github.com/hugoescalpelo/Digital-Hybrid-Design-and-Sensor-Programming/blob/main/Images/1.png)
+
+**How to do it**
+
+Video tutorials soon to be added.
