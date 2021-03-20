@@ -16,3 +16,21 @@ Below is the division of roles.
 - Eddie Castañeda. Computer vision manager
 - Yunuen SaGa. Artificial intelligence developer, contextualizer developer and data visualization
 - Hugo Escalpelo. Circuit designer, designer of 3D printed parts.
+
+**Software Needed**
+
+*3D printed Parts*
+
+SolidWorks 2020
+
+*Circuits*
+
+Autidesk Eagle
+
+*nVidia Jetson*
+
+L4T 4.3
+Ubuntu 18.04 LTS
+LibRealsense-utils
+LibRealsense-dev
+JetPack Installer 3.2.1
