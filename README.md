@@ -21,21 +21,24 @@ Below is the division of roles.
 
 *3D printed Parts*
 
-SolidWorks 2020
+- SolidWorks 2020
 
 *Laser Cut Parts*
 
-InkScape
+- InkScape
 
 *Circuits*
 
-Autidesk Eagle
+- Autidesk Eagle
 
 *nVidia Jetson*
 
-L4T 4.3
-Ubuntu 18.04 LTS
-LibRealsense-utils
-LibRealsense-dev
-JetPack Installer 3.2.1
+- L4T 4.3
+- Ubuntu 18.04 LTS
+- LibRealsense-utils
+- LibRealsense-dev
+- JetPack Installer 3.2.1
 
+**General System Description**
+
+This diagram shows working stages at electronic level. This diagram does not includes IA systems.
