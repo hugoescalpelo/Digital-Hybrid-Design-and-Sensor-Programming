@@ -55,3 +55,7 @@ This diagram shows working stages at electronic level. This diagram does not inc
 **How to do it**
 
 Video tutorials soon to be added.
+
+**Instructions**
+
+This is a big and complex Project. See Instructions Folder for more details on the many stages of reproducing this project.
