@@ -42,3 +42,5 @@ Below is the division of roles.
 **General System Description**
 
 This diagram shows working stages at electronic level. This diagram does not includes IA systems.
+
+![](https://github.com/hugoescalpelo/Digital-Hybrid-Design-and-Sensor-Programming/blob/main/Images/1.png)
