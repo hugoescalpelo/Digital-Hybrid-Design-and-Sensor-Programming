@@ -23,6 +23,10 @@ Below is the division of roles.
 
 SolidWorks 2020
 
+*Laser Cut Parts*
+
+InkScape
+
 *Circuits*
 
 Autidesk Eagle
@@ -34,3 +38,4 @@ Ubuntu 18.04 LTS
 LibRealsense-utils
 LibRealsense-dev
 JetPack Installer 3.2.1
+
