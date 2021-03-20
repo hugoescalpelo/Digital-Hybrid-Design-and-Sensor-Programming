@@ -1,0 +1,69 @@
+Este archivo contiene la descripción de los datos enviados a localhost.
+Esisten distintos sets diferenciados por un primer digito que puede entenderse como ID.
+
+Estos son los sets existentes
+0 ¿Hay 3G?
+1 ¿Hay WiFi?
+2 Set de sensores
+3 Set de actuadores
+4 Set visualizador
+5 Set Social
+
+Descripciones y ejemplos de sets
+
+-----------------3G
+ID, 	3G
+int, 	bool
+0,   	0-1
+
+Ex: 0,1
+
+-----------------WiFi
+ID, 	WiFi
+int, 	bool
+1,   	0-1
+
+Ex: 1,1
+
+-----------------Sensores
+ID,	uv,     temperature,	humidity,	buttons,	Sentada/de pie/en movimiento,	BATT
+int,	int,	float,      	int,    	int,    	int,			   	FLOAT
+2,	0-4096, 0-100.0,    	0-100,  	0-8,   		0,1,2, 				0.0-100-0
+
+Ex: 2,338,28.1,56,25,2,76.8
+
+-----------------Actuadores
+ID, 	temp, 	vibration
+int,	int, 	int
+3,  	0-2, 	0-10
+
+Ex: 3,0,0
+
+-----------------Visualizer
+Dump Visualizer: To be defined by Yun
+ID,	JSON
+int,	String
+4,	string
+
+-----------------Set social
+Este set tiene un segundo ID que determina a que red social se envía. Esto se deja pendiente, pero se
+conserva la estructura sugerida.
+
+twitter
+ID,	ID2,	Text,	IMG Path
+int,	int,	String,	string
+5,	0	text,	IMG URL/path
+
+facebook: Check for interaction capabilities
+https://flows.nodered.org/node/node-red-contrib-viseo-facebook
+https://www.npmjs.com/package/node-red-contrib-facebook-messenger-writer
+https://github.com/guidone/node-red-contrib-chatbot/wiki/Facebook-Receiver-node
+http://red-bot.io
+
+Suggested
+ID,	ID2,	text,	IMP Path
+int,	int,	string, string
+5,	1,	text,	IMG URL/path
+
+------------------Salto de linea acordado
+/l/n

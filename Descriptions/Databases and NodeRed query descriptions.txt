@@ -1,0 +1,27 @@
+\sql
+\connect root@localhost
+\connect hugov7zv_act1@207.174.215.153
+dosdepastor
+CREATE DATABASE digitalhybrid;
+show databases;
+use hugov7zv_DigitalHybrid;
+CREATE TABLE sensors (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP, uv INT(1) UNSIGNED NOT NULL, temp FLOAT(4,2) NOT NULL, hum INT(1) UNSIGNED NOT NULL, buttons INT(1) UNSIGNED NOT NULL, motion INT(1) UNSIGNED NOT NULL, batt INT(1) UNSIGNED NOT NULL, lat DOUBLE(9,6) NOT NULL, lon DOUBLE(9,6) NOT NULL);
+show tables;
+
+//Insert
+msg.topic="INSERT INTO sensors (uv,temp,hum,buttons,motion,batt,lat,lon) VALUES ('"+msg.payload.uv+"','"+msg.payload.temp+"','"+msg.payload.hum+"','"+msg.payload.buttons+"','"+msg.payload.motion+"','"+msg.payload.batt+"','"+msg.payload.lat+"','"+msg.payload.lon+"')";
+Variable names in JSON are the same as columns in table database
+
+//Social database
+CREATE TABLE social (id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP, id2 INT(1) UNSIGNED NOT NULL, text CHAR(248) CHARACTER SET utf8, imgPath CHAR(248) CHARACTER SET utf8);
+msg.topic="INSERT INTO social (id2, text, imgPath) VALUES ('"+msg.payload.id2+"','"+msg.payload.text+"','"+msg.payload.imgPath+"')";
+
+//See table details
+describe sensors;
+
+//Drop table;22
+DROP TABLE sensors;
+
+//Permitir acceso desde windows a mysql 8
+CREATE USER 'root'@'%' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
